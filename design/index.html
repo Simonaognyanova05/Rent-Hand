@@ -1,350 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bg">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>SkillExchange — размяна на умения (прототип)</title>
-    <meta name="description" content="Прототип на респонсив дизайн за платформа за размяна на умения" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Hand</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="page" role="document">
-        <header>
-            <a class="brand" href="#home">
-                <div class="logo">SE</div>
-                <div>
-                    <div style="font-weight:800">SkillExchange</div>
-                    <div style="font-size:.8rem;color:var(--muted)">размяна на умения</div>
-                </div>
-            </a>
-            <nav aria-label="Основна навигация">
-                <a href="#about">За платформата</a>
-                <a href="#services">Услуги</a>
-                <a href="#create">Създай услуга</a>
-                <a href="#login" class="cta">Вход / Регистрация</a>
-            </nav>
-        </header>
 
-        <main>
-            <!-- HERO / HOME -->
-            <section id="home" class="hero">
-                <div class="hero-inner">
-                    <h1>Разменяйте умения лесно — учете, предавайте, и печелете</h1>
-                    <p class="lead">SkillExchange е място, където хората предлагат и търсят услуги/уроци/сътрудничество.
-                        Преглеждайте идеи, вижте детайли и поръчайте услуга чрез бърза форма — всичко без сложни
-                        регистрации.</p>
+    <header>
 
-                    <div class="searchbar">
-                        <input aria-label="Търсене"
-                            placeholder="Търсете умения, напр. графичен дизайн, урок по китара" />
-                        <select aria-label="Категория">
-                            <option>Всички категории</option>
-                            <option>Дизайн</option>
-                            <option>Програмиране</option>
-                            <option>Музика</option>
-                            <option>Езици</option>
-                        </select>
-                        <div class="chip">Онлайн</div>
-                        <div class="chip">Лично</div>
-                        <a href="#services" class="btn primary">Прегледай услуги</a>
-                    </div>
-                </div>
+        <div class="logo">RentHand</div>
 
-                <!-- quick stats / CTA -->
-                <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
-                    <div class="card" style="min-width:220px;max-width:320px;">
-                        <div class="meta">
-                            <div class="muted">Активни предложения</div>
-                            <div style="font-weight:700">128</div>
-                        </div>
-                        <p class="muted">Разнообразие от умения — само по един клик до поръчка.</p>
-                    </div>
-                    <div class="card" style="min-width:220px;max-width:320px;">
-                        <div class="meta">
-                            <div class="muted">Нови днес</div>
-                            <div style="font-weight:700">9</div>
-                        </div>
-                        <p class="muted">Открийте свежи предложения и свържете се с авторите.</p>
-                    </div>
-                </div>
-            </section>
+        <nav>
+            <a href="index.html">Начало</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="upload.html">Качи услуга</a>
+            <a href="about.html">За нас</a>
+            <a href="contact.html">Контакти</a>
+            <a href="login.html">Вход</a>
+        </nav>
 
-            <!-- ABOUT -->
-            <section id="about"
-                style="margin-top:1.25rem;padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)">
-                <h2>За платформата</h2>
-                <p class="muted">SkillExchange е проектирана да улесни размяната на умения между хора — независимо дали
-                    искаш да научиш нещо ново или да предложиш услугата си. Дизайнът тук е фокусиран върху простота,
-                    доверие и бързо действие: разгледай, виж детайли и направи поръчка чрез формата за поръчка.</p>
-            </section>
+    </header>
 
-            <!-- SERVICES GRID -->
-            <section id="services" style="margin-top:1.25rem">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
-                    <h2>Услуги</h2>
-                    <a href="#create" class="btn">Добави нова</a>
-                </div>
+    <section class="hero">
 
-                <div class="services-grid" role="list">
-                    <!-- card 1 -->
-                    <article class="card" role="listitem">
-                        <div class="meta"><span class="tag">Дизайн</span><span class="muted">от Ivan</span></div>
-                        <h3>Логотип + визуална идентичност</h3>
-                        <p class="muted">Професионален лого дизайн с 3 концепции, включени корекции и пакет за социални
-                            медии.</p>
-                        <div class="tags"><span class="tag">2D</span><span class="tag">Бързо</span></div>
-                        <div class="btns">
-                            <a href="#service-1" class="btn">Детайли</a>
-                            <a href="#service-1" class="btn primary">Поръчай</a>
-                        </div>
-                    </article>
+        <h1>Платформа за размяна на услуги</h1>
 
-                    <!-- card 2 -->
-                    <article class="card" role="listitem">
-                        <div class="meta"><span class="tag">Уроци</span><span class="muted">от Maria</span></div>
-                        <h3>Уроци по китара — начинаещи</h3>
-                        <p class="muted">Персонализирани часове, домашни задачи и записан материал за практикуване.</p>
-                        <div class="tags"><span class="tag">Видео</span><span class="tag">Онлайн</span></div>
-                        <div class="btns">
-                            <a href="#service-2" class="btn">Детайли</a>
-                            <a href="#service-2" class="btn primary">Поръчай</a>
-                        </div>
-                    </article>
+        <p>
+            Предложи уменията си или намери помощ от хора около теб.
+        </p>
 
-                    <!-- card 3 -->
-                    <article class="card" role="listitem">
-                        <div class="meta"><span class="tag">Код</span><span class="muted">от Georgi</span></div>
-                        <h3>Малки уеб приложения с React</h3>
-                        <p class="muted">Индивидуален компонент, интеграция с API и кратка документация.</p>
-                        <div class="tags"><span class="tag">React</span><span class="tag">API</span></div>
-                        <div class="btns">
-                            <a href="#service-3" class="btn">Детайли</a>
-                            <a href="#service-3" class="btn primary">Поръчай</a>
-                        </div>
-                    </article>
+        <a href="catalog.html" class="btn">Разгледай услугите</a>
 
-                    <!-- more sample cards (duplicated for design) -->
-                    <article class="card" role="listitem">
-                        <div class="meta"><span class="tag">Езици</span><span class="muted">от Ani</span></div>
-                        <h3>Разговорен английски — интензивен</h3>
-                        <p class="muted">Практически уроци и корекции на произношение.</p>
-                        <div class="btns">
-                            <a href="#service-4" class="btn">Детайли</a>
-                            <a href="#service-4" class="btn primary">Поръчай</a>
-                        </div>
-                    </article>
+    </section>
 
-                    <article class="card" role="listitem">
-                        <div class="meta"><span class="tag">Видео</span><span class="muted">от Petar</span></div>
-                        <h3>Монтаж на видео и цветова корекция</h3>
-                        <p class="muted">Монтаж до 10 мин клип, цветова корекция и базова графика.</p>
-                        <div class="btns">
-                            <a href="#service-5" class="btn">Детайли</a>
-                            <a href="#service-5" class="btn primary">Поръчай</a>
-                        </div>
-                    </article>
+    <section class="services">
 
-                    <article class="card" role="listitem">
-                        <div class="meta"><span class="tag">Бизнес</span><span class="muted">от Elena</span></div>
-                        <h3>Стратегия за социални медии</h3>
-                        <p class="muted">Месечен план, календар за съдържание и шаблони за публикации.</p>
-                        <div class="btns">
-                            <a href="#service-6" class="btn">Детайли</a>
-                            <a href="#service-6" class="btn primary">Поръчай</a>
-                        </div>
-                    </article>
+        <div class="card">
+            <h3>🔧 Ремонти</h3>
+            <p>Помощ за дома и техниката.</p>
+        </div>
 
-                </div>
-            </section>
+        <div class="card">
+            <h3>🎨 Дизайн</h3>
+            <p>Графичен и уеб дизайн.</p>
+        </div>
 
-            <!-- DETAILS + ORDER FORMS (implemented as sections revealed via :target) -->
+        <div class="card">
+            <h3>📚 Уроци</h3>
+            <p>Частни уроци и обучение.</p>
+        </div>
 
-            <section id="service-1" aria-labelledby="s1-title">
-                <div
-                    style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-direction:column">
-                    <a href="#services" class="btn" style="align-self:flex-end">затвори</a>
-                    <div class="details-grid">
-                        <div>
-                            <h3 id="s1-title">Логотип + визуална идентичност — Ivan</h3>
-                            <p class="muted">Пълен пакет за бранд — лого, цветова палитра, варианти за социални медии.
-                                Включва 3 концепции и 2 рунда корекции.</p>
+        <div class="card">
+            <h3>💻 IT услуги</h3>
+            <p>Програмиране и поддръжка.</p>
+        </div>
 
-                            <h4>Какво включва</h4>
-                            <ul class="muted">
-                                <li>Концепции за логотип (3)</li>
-                                <li>Векторни файлове (AI, SVG)</li>
-                                <li>Палитра и типография</li>
-                                <li>Ръководство за употреба (1 страница)</li>
-                            </ul>
+    </section>
 
-                            <h4>Отзиви</h4>
-                            <p class="muted"><strong>4.9</strong> • (34 ревюта)</p>
-                        </div>
+    <footer>
+        © 2026 Rent Hand
+    </footer>
 
-                        <aside class="details-actions">
-                            <div class="order-card">
-                                <div class="meta">
-                                    <div class="muted">Цена</div>
-                                    <div style="font-weight:800">250 лв</div>
-                                </div>
-                                <p class="muted">Време за изпълнение: 5 дни</p>
-                                <a href="#order-form" class="btn primary"
-                                    style="display:block;margin-top:.6rem;text-align:center">Поръчай тази услуга</a>
-                            </div>
-
-                            <div class="order-card">
-                                <div class="muted">Контакт</div>
-                                <p class="muted">Ivan • дизайнер • <span class="muted">ivan@example.com</span></p>
-                                <a href="#services" class="btn"
-                                    style="display:block;text-align:center;margin-top:.6rem">Профил на доставчика</a>
-                            </div>
-                        </aside>
-                    </div>
-                </div>
-            </section>
-
-            <section id="service-2" aria-labelledby="s2-title">
-                <a href="#services" class="btn" style="align-self:flex-end">затвори</a>
-                <div class="details-grid">
-                    <div>
-                        <h3 id="s2-title">Уроци по китара — Maria</h3>
-                        <p class="muted">Индивидуален план за начинаещи, насочен към практическо овладяване на акорди и
-                            ритъм.</p>
-                    </div>
-                    <aside class="details-actions">
-                        <div class="order-card">
-                            <div class="muted">Цена</div>
-                            <div style="font-weight:800">30 лв / час</div><a href="#order-form" class="btn primary"
-                                style="display:block;margin-top:.6rem;text-align:center">Поръчай</a>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <section id="service-3" aria-labelledby="s3-title">
-                <a href="#services" class="btn">затвори</a>
-                <div class="details-grid">
-                    <div>
-                        <h3 id="s3-title">Малки уеб приложения с React — Georgi</h3>
-                        <p class="muted">Бързо прототипиране или компонент по поръчка. Включва кратка документация и
-                            инструкции за деплой.</p>
-                    </div>
-                    <aside class="details-actions">
-                        <div class="order-card">
-                            <div class="muted">Цена</div>
-                            <div style="font-weight:800">от 120 лв</div><a href="#order-form" class="btn primary"
-                                style="display:block;margin-top:.6rem;text-align:center">Поръчай</a>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- simple order form anchored -->
-            <section id="order-form"
-                style="margin-top:1rem;padding:1rem;border-radius:12px;background:linear-gradient(180deg,#081227, #061226);border:1px solid rgba(255,255,255,0.03)">
-                <a href="#services" class="btn">затвори</a>
-                <h3>Форма за поръчка на услуга</h3>
-                <form class="order-card" method="post" action="#" aria-label="Форма за поръчка">
-                    <label for="service">Услуга</label>
-                    <input id="service" name="service" type="text" placeholder="Име на услугата (пример: Логотип)"
-                        required />
-
-                    <label for="name">Вашето име</label>
-                    <input id="name" name="name" type="text" placeholder="Име Фамилия" required />
-
-                    <label for="email">E-mail</label>
-                    <input id="email" name="email" type="email" placeholder="you@example.com" required />
-
-                    <label for="details">Детайли към поръчката</label>
-                    <textarea id="details" name="details"
-                        placeholder="Описване на нуждите, краен срок, файлови изисквания"></textarea>
-
-                    <label for="budget">Бюджет (неправително поле)</label>
-                    <select id="budget" name="budget">
-                        <option>Неприложимо</option>
-                        <option>до 50 лв</option>
-                        <option>50 - 150 лв</option>
-                        <option>150 - 400 лв</option>
-                        <option>над 400 лв</option>
-                    </select>
-
-                    <div style="display:flex;gap:.6rem;margin-top:.6rem">
-                        <button class="btn primary" type="submit">Изпрати поръчката</button>
-                        <a href="#services" class="btn">Откажи</a>
-                    </div>
-                </form>
-            </section>
-
-            <!-- AUTH: login / register / create service sections -->
-            <section id="login" class="auth"
-                style="background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)">
-                <h3>Вход</h3>
-                <form>
-                    <label for="email-login">E-mail</label>
-                    <input id="email-login" type="email" placeholder="you@example.com" />
-                    <label for="pass-login">Парола</label>
-                    <input id="pass-login" type="password" placeholder="• • • • • •" />
-                    <div style="display:flex;gap:.6rem;margin-top:.6rem">
-                        <button class="btn primary" type="submit">Вход</button>
-                        <a href="#register" class="btn">Регистрация</a>
-                    </div>
-                </form>
-            </section>
-
-            <section id="register" class="auth"
-                style="margin-top:1rem;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)">
-                <h3>Регистрация</h3>
-                <form>
-                    <label for="name-reg">Име</label>
-                    <input id="name-reg" type="text" placeholder="Име Фамилия" />
-                    <label for="email-reg">E-mail</label>
-                    <input id="email-reg" type="email" placeholder="you@example.com" />
-                    <label for="pass-reg">Парола</label>
-                    <input id="pass-reg" type="password" placeholder="• • • • • •" />
-                    <div style="display:flex;gap:.6rem;margin-top:.6rem">
-                        <button class="btn primary" type="submit">Създай профил</button>
-                        <a href="#login" class="btn">Вход</a>
-                    </div>
-                </form>
-            </section>
-
-            <section id="create" class="auth"
-                style="margin-top:1rem;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)">
-                <h3>Създай услуга</h3>
-                <form>
-                    <label for="title">Заглавие на услугата</label>
-                    <input id="title" type="text" placeholder="Кратко и ясно заглавие" />
-
-                    <label for="category">Категория</label>
-                    <select id="category">
-                        <option>Дизайн</option>
-                        <option>Програмиране</option>
-                        <option>Музика</option>
-                        <option>Езици</option>
-                    </select>
-
-                    <label for="summary">Кратко описание</label>
-                    <textarea id="summary" placeholder="Какво предлагате?"></textarea>
-
-                    <label for="price">Цена (по избор)</label>
-                    <input id="price" type="text" placeholder="Пр. 120 лв" />
-
-                    <div style="display:flex;gap:.6rem;margin-top:.6rem">
-                        <button class="btn primary" type="submit">Публикувай</button>
-                        <a href="#services" class="btn">Откажи</a>
-                    </div>
-                </form>
-            </section>
-
-        </main>
-
-        <footer>
-            <div>© <strong>SkillExchange</strong> • 2025</div>
-            <div class="muted">Помощ • Политика за поверителност • Контакти</div>
-        </footer>
-    </div>
 </body>
 
 </html>

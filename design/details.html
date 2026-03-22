@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/nav.ejs') %>
+
+        <section class="details">
+
+            <div class="details-card">
+
+                <div class="details-image">
+                    <img src="/images/service.jpg" alt="service">
+                    <span class="category">Дизайн</span>
+                </div>
+
+                <div class="details-content">
+
+                    <h1>
+                        <%= service.title %>
+                    </h1>
+
+                    <div class="meta">
+                        <span>⭐ 4.8</span>
+                        <span>📍 <%= service.location %></span>
+                        <span>⏱ 1 ден</span>
+                    </div>
+
+                    <p class="description">
+                        <%= service.description %>
+                    </p>
+
+                    <div class="user">
+                        <img src="/images/user1.jpg" class="avatar">
+                        <div>
+                            <p class="name">Иван Петров</p>
+                            <p class="role">Продавач</p>
+                        </div>
+                    </div>
+
+                    <div class="price-box">
+                        <span class="price">
+                            <%= service.price %> лв
+                        </span>
+                        <button class="btn">Свържи се</button>
+                    </div>
+
+                    <button class="delete-btn" data-id="<%= service._id %>">
+                        🗑 Изтрий услугата
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <%- include('./partials/footer.ejs') %>
+
+            <script>
+                const btn = document.querySelector('.delete-btn');
+
+                btn.addEventListener('click', () => {
+
+                    if (!confirm('Сигурен ли си?')) return;
+
+                    const id = btn.dataset.id;
+
+                    fetch('/services/' + id, {
+                        method: 'DELETE'
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            window.location.href = data.redirect;
+                        })
+                        .catch(err => console.log(err));
+                });
+            </script>
+
+</body>
+
+</html>

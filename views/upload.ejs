@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <%- include('./partials/header.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/navbar.ejs') %>
+
+
+        <section class="form-page">
+
+            <h1>Качи услуга</h1>
+
+            <form action="/services/upload" method="POST">
+
+                <input type="text" placeholder="Заглавие на услугата" name="title" required>
+
+                <textarea placeholder="Описание" name="description"></textarea>
+
+                <input type="number" placeholder="Цена" name="price">
+                <input type="text" placeholder="Местоположение" name="location">
+
+
+                <button class="btn">Публикувай</button>
+
+            </form>
+
+        </section>
+        <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

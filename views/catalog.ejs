@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <%- include('./partials/header.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/navbar.ejs') %>
+
+        <section class="page">
+
+            <h1 class="page-title">Каталог услуги</h1>
+
+            <div class="catalog-controls">
+
+                <input type="text" placeholder="Търси услуга..." class="search">
+
+                <select class="filter">
+                    <option>Всички категории</option>
+                    <option>Ремонти</option>
+                    <option>Дизайн</option>
+                    <option>IT услуги</option>
+                    <option>Уроци</option>
+                </select>
+
+            </div>
+
+            <div class="services">
+
+                <% if (services.length> 0) {%>
+                    <%services.forEach(service=> { %>
+                        <div class="card">
+
+                            <div class="card-header">
+                                <h3>
+                                    <%= service.title%>
+                                </h3>
+                                <span class="price">
+                                    <%= service.price%>€
+                                </span>
+                            </div>
+
+                            <p class="description">
+                                <%= service.description%>
+                            </p>
+
+                            <a href="/catalog/<%= service._id %>" class="btn small">Виж повече</a>
+
+
+                        </div>
+                        <% })%>
+                            <%}%>
+
+
+        </section>
+
+        <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>
