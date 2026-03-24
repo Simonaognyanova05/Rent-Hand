@@ -11,16 +11,21 @@
         <section class="form-page">
 
             <h2>Вход</h2>
+            <% if(error){ %>
+                <p class="error">
+                    <%= error %>
+                </p>
+                <% } %>
 
-            <form>
+                    <form action="/login" method="post">
 
-                <input type="email" placeholder="Имейл">
+                        <input type="test" placeholder="Потребителско име или имейл" name="identifier">
 
-                <input type="password" placeholder="Парола">
+                        <input type="password" placeholder="Парола" name="password">
 
-                <button class="btn">Влез</button>
+                        <button class="btn">Влез</button>
 
-            </form>
+                    </form>
 
         </section>
         <%- include('./partials/footer.ejs') %>

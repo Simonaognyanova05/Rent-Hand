@@ -26,7 +26,8 @@ app.get('/upload', serviceController.service_create_get);
 app.post('/services/upload', serviceController.service_create_post);
 app.get('/about', about);
 app.get('/contact', contact);
-app.get('/login', login);
+app.get('/login', login.login_get);
+app.post('/login', login.login_post);
 app.get('/register', register.register_get);
 app.post('/register', register.register_post);
 
