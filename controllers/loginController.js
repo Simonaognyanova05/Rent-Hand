@@ -27,7 +27,8 @@ const login_post = async (req, res) => {
         const comparedPass = await bcrypt.compare(password, user.password);
 
         if (comparedPass) {
-            console.log("success")
+            req.session.user = user;
+            console.log("Logged user:", req.session.user);
             res.redirect('/');
         } else {
             return res.render('login', {

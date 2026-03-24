@@ -7,10 +7,18 @@
     <nav class="nav-menu">
         <a href="/">Начало</a>
         <a href="/catalog">Каталог</a>
-        <a href="/upload">Качи услуга</a>
         <a href="/about">За нас</a>
         <a href="/contact">Контакти</a>
-        <a href="/login">Вход</a>
+
+        <% if(!user){ %>
+            <a href="/login">Вход</a>
+            <a href="/register">Регистрация</a>
+            <% } else { %>
+                <a href="/upload">Качи услуга</a>
+                <a href="/profile">Профил</a>
+                <a href="/logout">Изход</a>
+                <% } %>
+
     </nav>
 
 </header>

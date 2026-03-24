@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const serviceController = require('./controllers/serviceController');
 const about = require('./controllers/aboutController');
 const contact = require('./controllers/contactController');
 const login = require('./controllers/loginController');
 const register = require('./controllers/registerController');
+const isAuth = require('./middlewares/isAuth');
 
 
 const app = express();
@@ -15,6 +17,17 @@ mongoose.connect(dbURL);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'my-secret-key',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use((req, res, next) => {
+    res.locals.user = req.session.user;
+    next();
+});
+
 
 app.listen(3000);
 
