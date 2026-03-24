@@ -18,6 +18,10 @@ const serviceSchema = new Schema({
         type: Number,
         required: true,
     },
+    userId: {
+        type: String,
+        required: true,
+    }
 }, { timestamps: true });
 
 const Service = mongoose.model('Service', serviceSchema);

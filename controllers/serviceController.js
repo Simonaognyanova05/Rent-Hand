@@ -20,8 +20,12 @@ const service_create_get = (req, res) => {
 };
 
 const service_create_post = (req, res) => {
-    const service = new Service(req.body);
+    const user = req.session.user;
 
+    const service = new Service({
+        ...req.body,
+        userId: user._id
+    })
     service.save()
         .then(result => {
             console.log(result);
