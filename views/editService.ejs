@@ -23,7 +23,34 @@
                 <input type="number" name="price" value="<%= service.price %>">
 
                 <input type="text" name="location" value="<%= service.location %>">
+                <input type="text" placeholder="Линк към изображение" name="img" value="<%= service.img %>">
 
+
+
+                <h3>Свободни часове</h3>
+
+                <div id="timeSlots">
+
+                    <% if(service.availableTimes){ %>
+
+                        <% service.availableTimes.forEach(time=> { %>
+
+                            <div class="time-slot">
+
+                                <input type="datetime-local" name="availableTimes"
+                                    value="<%= new Date(time.date).toISOString().slice(0,16) %>">
+
+                                <button type="button" class="remove-btn">X</button>
+
+                            </div>
+
+                            <% }) %>
+
+                                <% } %>
+
+                </div>
+
+                <button type="button" class="add-time-btn">+ Добави час</button>
 
                 <button class="btn">Редактирай</button>
 
@@ -31,6 +58,39 @@
 
         </section>
         <%- include('./partials/footer.ejs') %>
+            <script>
+
+                const addBtn = document.querySelector(".add-time-btn");
+                const container = document.getElementById("timeSlots");
+
+                addBtn.addEventListener("click", () => {
+
+                    const div = document.createElement("div");
+
+                    div.classList.add("time-slot");
+
+                    div.innerHTML = `
+<input type="datetime-local" name="availableTimes">
+<button type="button" class="remove-btn">X</button>
+`;
+
+                    container.appendChild(div);
+
+                    div.querySelector(".remove-btn").addEventListener("click", () => {
+                        div.remove();
+                    });
+
+                });
+
+                document.querySelectorAll(".remove-btn").forEach(btn => {
+
+                    btn.addEventListener("click", (e) => {
+                        e.target.parentElement.remove();
+                    });
+
+                });
+
+            </script>
 </body>
 
 </html>

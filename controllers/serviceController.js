@@ -83,16 +83,37 @@ const service_edit_get = (req, res) => {
 }
 
 const service_edit_one = (req, res) => {
-    const { title, description, price, location } = req.body;
-    Service.findByIdAndUpdate({ _id: req.params.id }, { title, description, price, location })
+
+    let times = req.body.availableTimes;
+
+    if (!Array.isArray(times)) {
+        times = [times];
+    }
+
+    const formattedTimes = times.map(x => ({
+        date: new Date(x),
+        booked: false
+    }));
+
+    const { title, description, price, location, img } = req.body;
+
+    Service.findByIdAndUpdate(
+        req.params.id,
+        {
+            title,
+            description,
+            price,
+            location,
+            img,
+            availableTimes: formattedTimes
+        }
+    )
         .then(result => {
             res.redirect('/catalog');
         })
-        .catch(e => {
-            console.log(e);
-        })
-};
+        .catch(e => console.log(e));
 
+};
 module.exports = {
     service_index,
     service_catalog,
