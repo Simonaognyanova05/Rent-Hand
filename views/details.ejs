@@ -48,8 +48,9 @@
                         </span>
                         <button class="btn">Свържи се</button>
                     </div>
-                    <% if (user && user._id === service.userId) { %>
+                    <% if (user && user._id.toString()===service.userId.toString()) { %>
                         <a class="delete-btn" data-doc="<%= service._id %>">Delete</a>
+                        <a class="edit-btn" data-doc="<%= service._id %>">Edit</a>
                         <% } %>
 
 
@@ -74,7 +75,13 @@
                         .then(data => window.location.href = data.redirect)
                         .catch(e => console.log(e)
                         )
-                })
+                });
+
+                const editBtn = document.querySelector('a.edit-btn');
+
+                editBtn.addEventListener('click', () => {
+                    window.location.href = `/catalog/edit/${editBtn.dataset.doc}`;
+                });
             </script>
 
 </body>

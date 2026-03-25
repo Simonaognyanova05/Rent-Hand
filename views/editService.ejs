@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <%- include('./partials/header.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/navbar.ejs') %>
+
+
+        <section class="form-page">
+
+            <h1>Редактирай услуга</h1>
+
+            <form action="/catalog/edit/<%= service._id %>?_method=PUT" method="POST">
+
+                <input type="text" name="title" value="<%= service.title %>" required>
+
+                <textarea name="description"><%= service.description %></textarea>
+
+                <input type="number" name="price" value="<%= service.price %>">
+
+                <input type="text" name="location" value="<%= service.location %>">
+
+
+                <button class="btn">Редактирай</button>
+
+            </form>
+
+        </section>
+        <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

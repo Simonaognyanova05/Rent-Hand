@@ -61,11 +61,37 @@ const service_delete_one = (req, res) => {
         })
 };
 
+const service_edit_get = (req, res) => {
+    const id = req.params.id;
+
+    Service.findById(id)
+        .then(result => {
+            res.render('editService', {
+                title: 'Edit service',
+                service: result
+            });
+        })
+        .catch(err => console.log(err));
+}
+
+const service_edit_one = (req, res) => {
+    const { title, description, price, location } = req.body;
+    Service.findByIdAndUpdate({ _id: req.params.id }, { title, description, price, location })
+        .then(result => {
+            res.redirect('/catalog');
+        })
+        .catch(e => {
+            console.log(e);
+        })
+};
+
 module.exports = {
     service_index,
     service_catalog,
     service_create_get,
     service_create_post,
     service_get_one,
-    service_delete_one
+    service_delete_one,
+    service_edit_get,
+    service_edit_one
 }

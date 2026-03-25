@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const methodOverride = require('method-override');
 const serviceController = require('./controllers/serviceController');
 const about = require('./controllers/aboutController');
 const contact = require('./controllers/contactController');
@@ -22,6 +23,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use(methodOverride('_method'));
 
 app.use((req, res, next) => {
     res.locals.user = req.session.user;
@@ -37,6 +39,8 @@ app.get('/catalog/:id', serviceController.service_get_one);
 app.delete('/catalog/:id', serviceController.service_delete_one);
 app.get('/upload', isAuth, serviceController.service_create_get);
 app.post('/services/upload', isAuth, serviceController.service_create_post);
+app.get('/catalog/edit/:id', serviceController.service_edit_get);
+app.put('/catalog/edit/:id', isAuth, serviceController.service_edit_one);
 app.get('/about', about);
 app.get('/contact', contact);
 app.get('/login', login.login_get);
