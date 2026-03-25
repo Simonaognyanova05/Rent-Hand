@@ -6,6 +6,7 @@ const serviceSchema = new Schema({
     description: String,
     price: Number,
     location: String,
+    img: String,
 
     availableTimes: [
         {

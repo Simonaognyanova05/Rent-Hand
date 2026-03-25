@@ -14,8 +14,8 @@
             <div class="details-card">
 
                 <div class="details-image">
-                    <img src="/images/service.jpg" alt="service">
-                    <span class="category">Дизайн</span>
+                    <img src="<%= service.img %>" alt="service">
+                    <span class="category">Услуга</span>
                 </div>
 
                 <div class="details-content">
@@ -27,7 +27,7 @@
                     <div class="meta">
                         <span>⭐ 4.8</span>
                         <span>📍 <%= service.location %></span>
-                        <span>⏱ 1 ден</span>
+                        <span>⏱ По договаряне</span>
                     </div>
 
                     <p class="description">
@@ -35,10 +35,9 @@
                     </p>
 
                     <div class="user">
-                        <img src="/images/user1.jpg" class="avatar">
                         <div>
-                            <p class="name">Иван Петров</p>
-                            <p class="role">Продавач</p>
+                            <p class="name">Продавач</p>
+                            <p class="role">Собственик на услугата</p>
                         </div>
                     </div>
 
@@ -46,13 +45,68 @@
                         <span class="price">
                             <%= service.price %> €
                         </span>
+
                         <button class="btn">Свържи се</button>
                     </div>
-                    <% if (user && user._id.toString()===service.userId.toString()) { %>
-                        <a class="delete-btn" data-doc="<%= service._id %>">Delete</a>
-                        <a class="edit-btn" data-doc="<%= service._id %>">Edit</a>
-                        <% } %>
 
+
+                    <!-- Свободни часове -->
+                    <div class="available-times">
+
+                        <h3>Свободни часове</h3>
+
+                        <% if(service.availableTimes && service.availableTimes.length> 0){ %>
+
+                            <div class="time-grid">
+
+                                <% service.availableTimes.forEach(time=> { %>
+
+                                    <% if(!time.booked){ %>
+
+                                        <button class="time-card">
+
+                                            <span class="date">
+                                                <%= new Date(time.date).toLocaleDateString() %>
+                                            </span>
+
+                                            <span class="hour">
+                                                <%= new Date(time.date).toLocaleTimeString([], {hour: '2-digit' ,
+                                                    minute:'2-digit'}) %>
+                                            </span>
+
+                                        </button>
+
+                                        <% } %>
+
+                                            <% }) %>
+
+                            </div>
+
+                            <% } else { %>
+
+                                <p>Няма налични часове</p>
+
+                                <% } %>
+
+                    </div>
+
+
+                    <!-- Admin бутони -->
+                    <% if (user && user._id.toString()===service.userId.toString()) { %>
+
+                        <div class="owner-actions">
+
+                            <a class="edit-btn btn" data-doc="<%= service._id %>">
+                                Редактирай
+                            </a>
+
+                            <a class="delete-btn btn danger" data-doc="<%= service._id %>">
+                                Изтрий
+                            </a>
+
+                        </div>
+
+                        <% } %>
 
                 </div>
 
@@ -63,25 +117,32 @@
         <%- include('./partials/footer.ejs') %>
 
             <script>
-                const trashkan = document.querySelector('a.delete-btn');
 
-                trashkan.addEventListener('click', (e) => {
-                    const endpoint = `/catalog/${trashkan.dataset.doc}`;
+                const deleteBtn = document.querySelector('.delete-btn');
 
-                    fetch(endpoint, {
-                        method: 'DELETE'
-                    })
-                        .then(response => response.json())
-                        .then(data => window.location.href = data.redirect)
-                        .catch(e => console.log(e)
-                        )
-                });
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', () => {
 
-                const editBtn = document.querySelector('a.edit-btn');
+                        const endpoint = `/catalog/${deleteBtn.dataset.doc}`;
 
-                editBtn.addEventListener('click', () => {
-                    window.location.href = `/catalog/edit/${editBtn.dataset.doc}`;
-                });
+                        fetch(endpoint, {
+                            method: 'DELETE'
+                        })
+                            .then(response => response.json())
+                            .then(data => window.location.href = data.redirect)
+                            .catch(err => console.log(err));
+
+                    });
+                }
+
+                const editBtn = document.querySelector('.edit-btn');
+
+                if (editBtn) {
+                    editBtn.addEventListener('click', () => {
+                        window.location.href = `/catalog/edit/${editBtn.dataset.doc}`;
+                    });
+                }
+
             </script>
 
 </body>
