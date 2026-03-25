@@ -23,6 +23,15 @@
                 <input type="number" placeholder="Цена" name="price">
                 <input type="text" placeholder="Местоположение" name="location">
 
+                <h3>Възможни часове</h3>
+
+                <div id="timeSlots">
+                    <div class="time-slot">
+                        <input type="datetime-local" name="availableTimes">
+                    </div>
+                </div>
+
+                <button type="button" class="add-time-btn">+ Добави час</button>
 
                 <button class="btn">Публикувай</button>
 
@@ -30,6 +39,27 @@
 
         </section>
         <%- include('./partials/footer.ejs') %>
+            <script>
+                const addBtn = document.querySelector(".add-time-btn");
+                const container = document.getElementById("timeSlots");
+
+                addBtn.addEventListener("click", () => {
+                    const div = document.createElement("div");
+
+                    div.classList.add("time-slot");
+
+                    div.innerHTML = `
+            <input type="datetime-local" name="availableTimes">
+            <button type="button" class="remove-btn">X</button>
+        `;
+
+                    container.appendChild(div);
+
+                    div.querySelector(".remove-btn").addEventListener("click", () => {
+                        div.remove();
+                    });
+                });
+            </script>
 </body>
 
 </html>

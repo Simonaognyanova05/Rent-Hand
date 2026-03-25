@@ -22,19 +22,27 @@ const service_create_get = (req, res) => {
 const service_create_post = (req, res) => {
     const user = req.session.user;
 
+    let times = req.body.availableTimes;
+
+    if (!Array.isArray(times)) {
+        times = [times];
+    }
+
+    const formattedTimes = times.map(x => ({
+        date: new Date(x)
+    }));
+
     const service = new Service({
         ...req.body,
+        availableTimes: formattedTimes,
         userId: user._id
-    })
+    });
+
     service.save()
         .then(result => {
-            console.log(result);
-
             res.redirect('/catalog');
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(err => console.log(err));
 };
 
 const service_get_one = (req, res) => {
