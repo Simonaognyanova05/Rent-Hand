@@ -5,7 +5,7 @@
     <%- include('./partials/header.ejs') %>
 </head>
 
-<body>
+<body data-user="<%= user ? 'true' : 'false' %>">
 
     <%- include('./partials/navbar.ejs') %>
 
@@ -46,9 +46,65 @@
                             <%= service.price %> €
                         </span>
 
-                        <button class="btn">Свържи се</button>
+                        <button class="btn contact-btn">Свържи се</button>
+                    </div>
+                    <!-- Contact Modal -->
+                    <div class="contact-modal hidden">
+
+                        <div class="contact-box">
+
+                            <h3>Свържи се със собственика</h3>
+
+                            <form action="/messages/<%= service._id %>" method="POST">
+
+                                <textarea name="message" placeholder="Напиши съобщение..." required></textarea>
+
+                                <div class="contact-actions">
+
+                                    <button class="send-btn">
+                                        Изпрати
+                                    </button>
+
+                                    <button type="button" class="close-btn">
+                                        Затвори
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
                     </div>
 
+
+
+                    <!-- Login Modal -->
+                    <div class="login-modal hidden">
+
+                        <div class="contact-box">
+
+                            <h3>Трябва да влезеш в профила си</h3>
+
+                            <p class="login-text">
+                                За да изпратиш съобщение трябва да имаш профил
+                            </p>
+
+                            <div class="contact-actions">
+
+                                <a href="/login" class="send-btn">
+                                    Вход
+                                </a>
+
+                                <button type="button" class="close-login-btn close-btn">
+                                    Затвори
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                     <!-- Свободни часове -->
                     <div class="available-times">
@@ -116,6 +172,9 @@
 
         <%- include('./partials/footer.ejs') %>
 
+
+
+            <script src="/js/contactModal.js"></script>
             <script src="/js/deleteService.js"></script>
 
 </body>

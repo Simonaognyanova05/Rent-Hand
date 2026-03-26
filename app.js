@@ -7,6 +7,7 @@ const about = require('./controllers/aboutController');
 const contact = require('./controllers/contactController');
 const login = require('./controllers/loginController');
 const register = require('./controllers/registerController');
+const message = require('./controllers/messageController');
 const isAuth = require('./middlewares/isAuth');
 
 
@@ -41,6 +42,7 @@ app.get('/upload', isAuth, serviceController.service_create_get);
 app.post('/services/upload', isAuth, serviceController.service_create_post);
 app.get('/catalog/edit/:id', serviceController.service_edit_get);
 app.put('/catalog/edit/:id', isAuth, serviceController.service_edit_one);
+app.post('/messages/:id', isAuth, message.send_service_message);
 app.get('/about', about);
 app.get('/contact', contact);
 app.get('/login', login.login_get);
