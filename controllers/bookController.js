@@ -26,13 +26,13 @@ const book_post = async (req, res) => {
     const time = service.availableTimes.id(timeId);
 
     time.booked = true;
-
     time.email = email;
     time.message = message;
+    time.userId = req.session.user._id;
 
     await service.save();
 
-    res.redirect(`/services/${serviceId}`);
+    res.redirect(`/catalog/${serviceId}`);
 };
 
 module.exports = {

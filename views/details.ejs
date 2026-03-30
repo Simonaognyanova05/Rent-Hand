@@ -119,41 +119,44 @@
                     <div class="available-times">
 
                         <h3>Свободни часове</h3>
+                        <% const freeTimes=service.availableTimes.filter(t=> !t.booked);
+                            %>
 
-                        <% if(service.availableTimes && service.availableTimes.length> 0){ %>
+                            <% if(freeTimes.length> 0){ %>
 
-                            <div class="time-grid">
+                                <div class="time-grid">
 
-                                <% service.availableTimes.forEach(time=> { %>
+                                    <% service.availableTimes.forEach(time=> { %>
 
-                                    <% if(!time.booked){ %>
+                                        <% if(!time.booked){ %>
 
-                                        <a href="/book/<%= service._id %>/<%= time._id %>" class="time-card book-btn">
+                                            <a href="/book/<%= service._id %>/<%= time._id %>"
+                                                class="time-card book-btn">
 
 
 
-                                            <span class="date">
-                                                <%= new Date(time.date).toLocaleDateString() %>
-                                            </span>
+                                                <span class="date">
+                                                    <%= new Date(time.date).toLocaleDateString() %>
+                                                </span>
 
-                                            <span class="hour">
-                                                <%= new Date(time.date).toLocaleTimeString([], {hour: '2-digit' ,
-                                                    minute:'2-digit'}) %>
-                                            </span>
+                                                <span class="hour">
+                                                    <%= new Date(time.date).toLocaleTimeString([], {hour: '2-digit' ,
+                                                        minute:'2-digit'}) %>
+                                                </span>
 
-                                        </a>
+                                            </a>
 
-                                        <% } %>
+                                            <% } %>
 
-                                            <% }) %>
+                                                <% }) %>
 
-                            </div>
+                                </div>
 
-                            <% } else { %>
+                                <% } else { %>
 
-                                <p>Няма налични часове</p>
+                                    <p>Няма налични часове</p>
 
-                                <% } %>
+                                    <% } %>
 
                     </div>
 

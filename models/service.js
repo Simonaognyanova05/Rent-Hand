@@ -16,7 +16,8 @@ const serviceSchema = new Schema({
                 default: false
             },
             email: String,
-            message: String
+            message: String,
+            userId: String
         }
     ],
 

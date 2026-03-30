@@ -8,57 +8,118 @@
 <body>
 
     <%- include('./partials/navbar.ejs') %>
-
         <section class="page">
 
-            <h1 class="page-title">Моите резервации</h1>
+            
+            <h1 class="page-title">Моите услуги</h1>
 
-            <% services.forEach(service=> { %>
+            <% if(services.length===0){ %>
 
-                <div class="card">
-
-                    <h2>
-                        <%= service.title %>
-                    </h2>
-
-                    <div class="bookings">
-
-                        <% service.availableTimes.forEach(time=> { %>
-
-                            <% if(time.booked){ %>
-
-                                <div class="booking-card">
-
-                                    <p>
-                                        📅
-                                        <%= new Date(time.date).toLocaleDateString() %>
-                                    </p>
-
-                                    <p>
-                                        🕐
-                                        <%= new Date(time.date).toLocaleTimeString([], { hour:'2-digit',
-                                            minute:'2-digit' }) %>
-                                    </p>
-
-                                    <p>📧 <%= time.email %>
-                                    </p>
-
-                                    <% if(time.message){ %>
-                                        <p>💬 <%= time.message %>
-                                        </p>
-                                        <% } %>
-
-                                </div>
-
-                                <% } %>
-
-                                    <% }) %>
-
-                    </div>
-
+                <div class="empty-state">
+                    Нямате създадени услуги
                 </div>
 
-                <% }) %>
+                <% } %>
+
+                    <% services.forEach(service=> { %>
+
+                        <div class="card">
+
+                            <h2>
+                                <%= service.title %>
+                            </h2>
+
+                            <% const bookedTimes=service.availableTimes.filter(t=> t.booked);
+                                %>
+
+                                <% if(bookedTimes.length> 0){ %>
+
+                                    <div class="bookings">
+
+                                        <% bookedTimes.forEach(time=> { %>
+
+                                            <div class="booking-card">
+
+                                                <p>
+                                                    📅 <%= new Date(time.date).toLocaleDateString() %>
+                                                </p>
+
+                                                <p>
+                                                    🕐 <%= new Date(time.date).toLocaleTimeString([], { hour:'2-digit',
+                                                        minute:'2-digit' }) %>
+                                                </p>
+
+                                                <p>📧 <%= time.email %>
+                                                </p>
+
+                                                <% if(time.message){ %>
+                                                    <p>💬 <%= time.message %>
+                                                    </p>
+                                                    <% } %>
+
+                                            </div>
+
+                                            <% }) %>
+
+                                    </div>
+
+                                    <% } else { %>
+
+                                        <div class="empty-state small">
+                                            Няма резервации за тази услуга
+                                        </div>
+
+                                        <% } %>
+
+                        </div>
+
+                        <% }) %>
+
+
+
+                            <h1 class="page-title">Моите резервации</h1>
+
+                            <% let hasBookings=false; %>
+
+                                <% bookings.forEach(service=> { %>
+
+                                    <% service.availableTimes.forEach(time=> { %>
+
+                                        <% if(time.userId==user._id){ hasBookings=true; %>
+
+                                            <div class="booking-card">
+
+                                                <h3>
+                                                    <%= service.title %>
+                                                </h3>
+
+                                                <p>
+                                                    📅 <%= new Date(time.date).toLocaleDateString() %>
+                                                </p>
+
+                                                <p>
+                                                    🕐 <%= new Date(time.date).toLocaleTimeString([], { hour:'2-digit',
+                                                        minute:'2-digit' }) %>
+                                                </p>
+
+                                                <p>📧 <%= time.email %>
+                                                </p>
+
+                                            </div>
+
+                                            <% } %>
+
+                                                <% }) %>
+
+                                                    <% }) %>
+
+                                                        <% if(!hasBookings){ %>
+
+                                                            <div class="empty-state">
+                                                                Нямате направени резервации
+                                                            </div>
+
+                                                            <% } %>
 
         </section>
 

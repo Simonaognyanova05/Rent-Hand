@@ -656,6 +656,27 @@ footer {
     transform: scale(0.97);
 }
 
+.empty-state {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    opacity: .7;
+    margin-bottom: 25px;
+}
+
+.empty-state.small {
+    padding: 15px;
+    font-size: 14px;
+    opacity: .6;
+}
+
+.booking-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
 
 .send-btn {
     background: linear-gradient(90deg, #3b82f6, #6366f1);
@@ -791,6 +812,7 @@ footer {
 .close-login:hover {
     color: white;
 }
+
 
 @keyframes fadeIn {
     from {
