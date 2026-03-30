@@ -12,14 +12,17 @@
 
             <h2>Запази час</h2>
 
-            <form action="/book" method="post">
+            <form action="/book/<%= service._id %>/<%= time._id %>" method="post">
 
-                <input type="email" placeholder="Имейл" name="email">
+
+                <input type="email" placeholder="Имейл" name="email" required>
 
                 <textarea name="message" placeholder="Допълнителна информация"></textarea>
+
                 <button class="btn">Запази час</button>
 
             </form>
+
 
         </section>
         <%- include('./partials/footer.ejs') %>

@@ -6,12 +6,12 @@ const book_get = async (req, res) => {
 
     const service = await Service.findById(serviceId);
 
-    const selectedTime = service.availableTimes.id(timeId);
+    const time = service.availableTimes.id(timeId);
 
     res.render('book', {
         title: 'Book service',
         service,
-        selectedTime
+        time
     });
 };
 
@@ -19,11 +19,16 @@ const book_post = async (req, res) => {
 
     const { serviceId, timeId } = req.params;
 
+    const { email, message } = req.body;
+
     const service = await Service.findById(serviceId);
 
     const time = service.availableTimes.id(timeId);
 
     time.booked = true;
+
+    time.email = email;
+    time.message = message;
 
     await service.save();
 

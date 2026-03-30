@@ -8,8 +8,8 @@ const contact = require('./controllers/contactController');
 const login = require('./controllers/loginController');
 const register = require('./controllers/registerController');
 const message = require('./controllers/messageController');
+const book = require('./controllers/bookController');
 const isAuth = require('./middlewares/isAuth');
-const bookRoutes = require('./routes/bookController');
 
 
 const app = express();
@@ -31,7 +31,6 @@ app.use((req, res, next) => {
     res.locals.user = req.session.user;
     next();
 });
-app.use('/book', bookRoutes);
 
 
 app.listen(3000);
@@ -45,6 +44,8 @@ app.post('/services/upload', isAuth, serviceController.service_create_post);
 app.get('/catalog/edit/:id', serviceController.service_edit_get);
 app.put('/catalog/edit/:id', isAuth, serviceController.service_edit_one);
 app.post('/messages/:id', isAuth, message.send_service_message);
+app.get('/book/:serviceId/:timeId', book.book_get);
+app.post('/book/:serviceId/:timeId', book.book_post);
 app.get('/about', about);
 app.get('/contact', contact);
 app.get('/login', login.login_get);

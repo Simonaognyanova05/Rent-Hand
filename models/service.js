@@ -14,7 +14,9 @@ const serviceSchema = new Schema({
             booked: {
                 type: Boolean,
                 default: false
-            }
+            },
+            email: String,
+            message: String
         }
     ],
 
