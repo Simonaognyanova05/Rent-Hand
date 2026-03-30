@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <%- include('./partials/header.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/navbar.ejs') %>
+
+        <section class="page">
+
+            <h1 class="page-title">Моите резервации</h1>
+
+            <% services.forEach(service=> { %>
+
+                <div class="card">
+
+                    <h2>
+                        <%= service.title %>
+                    </h2>
+
+                    <div class="bookings">
+
+                        <% service.availableTimes.forEach(time=> { %>
+
+                            <% if(time.booked){ %>
+
+                                <div class="booking-card">
+
+                                    <p>
+                                        📅
+                                        <%= new Date(time.date).toLocaleDateString() %>
+                                    </p>
+
+                                    <p>
+                                        🕐
+                                        <%= new Date(time.date).toLocaleTimeString([], { hour:'2-digit',
+                                            minute:'2-digit' }) %>
+                                    </p>
+
+                                    <p>📧 <%= time.email %>
+                                    </p>
+
+                                    <% if(time.message){ %>
+                                        <p>💬 <%= time.message %>
+                                        </p>
+                                        <% } %>
+
+                                </div>
+
+                                <% } %>
+
+                                    <% }) %>
+
+                    </div>
+
+                </div>
+
+                <% }) %>
+
+        </section>
+
+        <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>
