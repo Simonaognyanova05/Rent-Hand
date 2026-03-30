@@ -50,7 +50,7 @@ const service_get_one = (req, res) => {
 
     Service.findById(id)
         .then(result => {
-            res.render('details', { title: 'Details page', service: result });
+            res.render('details', { title: 'Details page', service: result, user: req.session.user });
         })
         .catch(err => {
             console.log(err);
