@@ -7,6 +7,7 @@
 
 <body data-user="<%= !!user %>">
 
+
     <%- include('./partials/navbar.ejs') %>
 
         <section class="details">
@@ -127,7 +128,9 @@
 
                                     <% if(!time.booked){ %>
 
-                                        <button class="time-card">
+                                        <a href="/book/<%= service._id %>/<%= time._id %>" class="time-card book-btn">
+
+
 
                                             <span class="date">
                                                 <%= new Date(time.date).toLocaleDateString() %>
@@ -138,7 +141,7 @@
                                                     minute:'2-digit'}) %>
                                             </span>
 
-                                        </button>
+                                        </a>
 
                                         <% } %>
 
@@ -183,6 +186,8 @@
 
             <script src="/js/contactModal.js"></script>
             <script src="/js/deleteService.js"></script>
+            <script src="/js/bookGuard.js"></script>
+
 
 </body>
 

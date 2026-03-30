@@ -9,6 +9,7 @@ const login = require('./controllers/loginController');
 const register = require('./controllers/registerController');
 const message = require('./controllers/messageController');
 const isAuth = require('./middlewares/isAuth');
+const bookRoutes = require('./routes/bookController');
 
 
 const app = express();
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
     res.locals.user = req.session.user;
     next();
 });
+app.use('/book', bookRoutes);
 
 
 app.listen(3000);

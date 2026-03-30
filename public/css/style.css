@@ -614,6 +614,49 @@ footer {
     gap: 10px;
 }
 
+.time-card {
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    backdrop-filter: blur(8px);
+    color: white;
+}
+
+/* hover ефект */
+.time-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    background: linear-gradient(135deg, #38bdf8, #6366f1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* дата */
+.time-card .date {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* час */
+.time-card .hour {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.time-card:active {
+    transform: scale(0.97);
+}
+
+
 .send-btn {
     background: linear-gradient(90deg, #3b82f6, #6366f1);
     border: none;

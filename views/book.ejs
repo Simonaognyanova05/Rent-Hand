@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <%- include('./partials/header.ejs') %>
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+        <section class="form-page">
+
+            <h2>Запази час</h2>
+
+            <form action="/book" method="post">
+
+                <input type="email" placeholder="Имейл" name="email">
+
+                <textarea name="message" placeholder="Допълнителна информация"></textarea>
+                <button class="btn">Запази час</button>
+
+            </form>
+
+        </section>
+        <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>
