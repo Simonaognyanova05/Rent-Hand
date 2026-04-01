@@ -10,144 +10,214 @@
     <%- include('./partials/navbar.ejs') %>
         <section class="page">
 
+            <h1 class="page-title">Съобщения</h1>
 
-            <h1 class="page-title">Моите услуги</h1>
+            <% let hasMessages=false; %>
 
-            <% if(services.length===0){ %>
+                <% services.forEach(service=> { %>
 
-                <div class="empty-state">
-                    Нямате създадени услуги
-                </div>
+                    <% if(service.messages && service.messages.length> 0){ %>
 
-                <% } %>
+                        <% hasMessages=true; %>
 
-                    <% services.forEach(service=> { %>
+                            <div class="card">
 
-                        <div class="card">
+                                <h2>
+                                    <%= service.title %>
+                                </h2>
 
-                            <h2>
-                                <%= service.title %>
-                            </h2>
+                                <div class="messages">
 
-                            <% const bookedTimes=service.availableTimes.filter(t=> t.booked);
-                                %>
+                                    <% service.messages.forEach(msg=> { %>
 
-                                <% if(bookedTimes.length> 0){ %>
+                                        <div class="message-card">
 
-                                    <div class="bookings">
+                                            <p class="message-email">
+                                                📧 <%= msg.email %>
+                                            </p>
 
-                                        <% bookedTimes.forEach(time=> { %>
+                                            <p class="message-text">
+                                                <%= msg.message %>
+                                            </p>
 
-                                            <div class="booking-card">
+                                            <p class="message-date">
+                                                🕐 <%= new Date(msg.date).toLocaleDateString() %>
+                                            </p>
 
-                                                <p>
-                                                    📅 <%= new Date(time.date).toLocaleDateString() %>
-                                                </p>
+                                        </div>
 
-                                                <p>
-                                                    🕐 <%= new Date(time.date).toLocaleTimeString([], { hour:'2-digit',
-                                                        minute:'2-digit' }) %>
-                                                </p>
+                                        <% }) %>
 
-                                                <p>📧 <%= time.email %>
-                                                </p>
+                                </div>
 
-                                                <% if(time.message){ %>
-                                                    <p>💬 <%= time.message %>
-                                                    </p>
-                                                    <% } %>
+                            </div>
 
-                                            </div>
+                            <% } %>
 
-                                            <% }) %>
+                                <% }) %>
 
-                                    </div>
+                                    <% if(!hasMessages){ %>
 
-                                    <% } else { %>
-
-                                        <div class="empty-state small">
-                                            Няма резервации за тази услуга
+                                        <div class="empty-state">
+                                            Нямате съобщения
                                         </div>
 
                                         <% } %>
+                                            <h1 class="page-title">Моите услуги</h1>
 
-                        </div>
+                                            <% if(services.length===0){ %>
 
-                        <% }) %>
+                                                <div class="empty-state">
+                                                    Нямате създадени услуги
+                                                </div>
 
+                                                <% } %>
 
+                                                    <% services.forEach(service=> { %>
 
-                            <h1 class="page-title">Моите резервации</h1>
+                                                        <div class="card">
 
-                            <% let hasBookings=false; %>
+                                                            <h2>
+                                                                <%= service.title %>
+                                                            </h2>
 
-                                <% bookings.forEach(service=> { %>
+                                                            <% const bookedTimes=service.availableTimes.filter(t=>
+                                                                t.booked);
+                                                                %>
 
-                                    <% service.availableTimes.forEach(time=> { %>
+                                                                <% if(bookedTimes.length> 0){ %>
 
-                                        <% if(time.userId==user._id){ hasBookings=true; %>
+                                                                    <div class="bookings">
 
-                                            <div class="booking-card">
+                                                                        <% bookedTimes.forEach(time=> { %>
 
-                                                <h3>
-                                                    <%= service.title %>
-                                                </h3>
+                                                                            <div class="booking-card">
 
-                                                <p>
-                                                    📅 <%= new Date(time.date).toLocaleDateString() %>
-                                                </p>
+                                                                                <p>
+                                                                                    📅 <%= new
+                                                                                        Date(time.date).toLocaleDateString()
+                                                                                        %>
+                                                                                </p>
 
-                                                <p>
-                                                    🕐 <%= new Date(time.date).toLocaleTimeString([], { hour:'2-digit',
-                                                        minute:'2-digit' }) %>
-                                                </p>
+                                                                                <p>
+                                                                                    🕐 <%= new
+                                                                                        Date(time.date).toLocaleTimeString([],
+                                                                                        { hour:'2-digit',
+                                                                                        minute:'2-digit' }) %>
+                                                                                </p>
 
-                                                <p>📧 <%= time.email %>
-                                                </p>
-                                                <div class="booking-status">
+                                                                                <p>📧 <%= time.email %>
+                                                                                </p>
 
-                                                    <% if(time.status==="pending" ){ %>
+                                                                                <% if(time.message){ %>
+                                                                                    <p>💬 <%= time.message %>
+                                                                                    </p>
+                                                                                    <% } %>
 
-                                                        <span class="status pending">Изчакване</span>
+                                                                            </div>
 
-                                                        <form
-                                                            action="/booking/accept/<%= service._id %>/<%= time._id %>"
-                                                            method="POST">
-                                                            <button class="accept-btn">Приеми</button>
-                                                        </form>
+                                                                            <% }) %>
 
-                                                        <form
-                                                            action="/booking/reject/<%= service._id %>/<%= time._id %>"
-                                                            method="POST">
-                                                            <button class="reject-btn">Откажи</button>
-                                                        </form>
+                                                                    </div>
 
-                                                        <% } %>
+                                                                    <% } else { %>
 
-                                                            <% if(time.status==="accepted" ){ %>
-                                                                <span class="status accepted">Приета</span>
-                                                                <% } %>
+                                                                        <div class="empty-state small">
+                                                                            Няма резервации за тази услуга
+                                                                        </div>
 
-                                                                    <% if(time.status==="rejected" ){ %>
-                                                                        <span class="status rejected">Отказана</span>
                                                                         <% } %>
 
-                                                </div>
-                                            </div>
+                                                        </div>
 
-                                            <% } %>
+                                                        <% }) %>
 
-                                                <% }) %>
 
-                                                    <% }) %>
 
-                                                        <% if(!hasBookings){ %>
+                                                            <h1 class="page-title">Моите резервации</h1>
 
-                                                            <div class="empty-state">
-                                                                Нямате направени резервации
-                                                            </div>
+                                                            <% let hasBookings=false; %>
 
-                                                            <% } %>
+                                                                <% bookings.forEach(service=> { %>
+
+                                                                    <% service.availableTimes.forEach(time=> { %>
+
+                                                                        <% if(time.userId==user._id){ hasBookings=true;
+                                                                            %>
+
+                                                                            <div class="booking-card">
+
+                                                                                <h3>
+                                                                                    <%= service.title %>
+                                                                                </h3>
+
+                                                                                <p>
+                                                                                    📅 <%= new
+                                                                                        Date(time.date).toLocaleDateString()
+                                                                                        %>
+                                                                                </p>
+
+                                                                                <p>
+                                                                                    🕐 <%= new
+                                                                                        Date(time.date).toLocaleTimeString([],
+                                                                                        { hour:'2-digit',
+                                                                                        minute:'2-digit' }) %>
+                                                                                </p>
+
+                                                                                <p>📧 <%= time.email %>
+                                                                                </p>
+                                                                                <div class="booking-status">
+
+                                                                                    <% if(time.status==="pending" ){ %>
+
+                                                                                        <span
+                                                                                            class="status pending">Изчакване</span>
+
+                                                                                        <form
+                                                                                            action="/booking/accept/<%= service._id %>/<%= time._id %>"
+                                                                                            method="POST">
+                                                                                            <button
+                                                                                                class="accept-btn">Приеми</button>
+                                                                                        </form>
+
+                                                                                        <form
+                                                                                            action="/booking/reject/<%= service._id %>/<%= time._id %>"
+                                                                                            method="POST">
+                                                                                            <button
+                                                                                                class="reject-btn">Откажи</button>
+                                                                                        </form>
+
+                                                                                        <% } %>
+
+                                                                                            <% if(time.status==="accepted"
+                                                                                                ){ %>
+                                                                                                <span
+                                                                                                    class="status accepted">Приета</span>
+                                                                                                <% } %>
+
+                                                                                                    <% if(time.status==="rejected"
+                                                                                                        ){ %>
+                                                                                                        <span
+                                                                                                            class="status rejected">Отказана</span>
+                                                                                                        <% } %>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <% } %>
+
+                                                                                <% }) %>
+
+                                                                                    <% }) %>
+
+                                                                                        <% if(!hasBookings){ %>
+
+                                                                                            <div class="empty-state">
+                                                                                                Нямате направени
+                                                                                                резервации
+                                                                                            </div>
+
+                                                                                            <% } %>
 
         </section>
 

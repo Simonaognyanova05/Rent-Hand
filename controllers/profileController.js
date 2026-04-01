@@ -17,7 +17,8 @@ const profile_get = async (req, res) => {
     res.render('profile', {
         title: 'Profile',
         services,
-        bookings
+        bookings,
+        error: "Неуспешно зареждане на съобщения!"
     });
 };
 

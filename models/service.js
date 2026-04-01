@@ -25,6 +25,21 @@ const serviceSchema = new Schema({
         }
     ],
 
+    messages: [
+        {
+            userId: {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            email: String,
+            message: String,
+            date: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ],
+
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'

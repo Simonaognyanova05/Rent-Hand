@@ -1,20 +1,25 @@
-const ServiceMessage = require('../models/serviceMessage');
+const Service = require('../models/service');
 
-const send_service_message = (req, res) => {
+const send_service_message = async (req, res) => {
 
-    const message = new ServiceMessage({
-        serviceId: req.params.id,
-        senderId: req.session.user._id,
-        message: req.body.message
+    const { id } = req.params;
 
-    })
+    const { message } = req.body;
 
-    message.save()
-        .then(() => {
-            res.redirect('/catalog/' + req.params.id)
-        })
-        .catch(e => console.log(e))
+    const service = await Service.findById(id);
 
-}
+    service.messages.push({
+        userId: req.session.user._id,
+        email: req.session.user.email,
+        message
+    });
 
-module.exports = { send_service_message }
+    await service.save();
+
+    res.redirect(`/catalog/${id}`);
+
+};
+
+module.exports = {
+    send_service_message
+};
