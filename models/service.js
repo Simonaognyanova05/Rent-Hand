@@ -17,7 +17,11 @@ const serviceSchema = new Schema({
             },
             email: String,
             message: String,
-            userId: String
+            userId: String,
+            status: {
+                type: String,
+                default: "pending"
+            }
         }
     ],
 

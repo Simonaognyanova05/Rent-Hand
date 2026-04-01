@@ -10,7 +10,7 @@
     <%- include('./partials/navbar.ejs') %>
         <section class="page">
 
-            
+
             <h1 class="page-title">Моите услуги</h1>
 
             <% if(services.length===0){ %>
@@ -104,7 +104,35 @@
 
                                                 <p>📧 <%= time.email %>
                                                 </p>
+                                                <div class="booking-status">
 
+                                                    <% if(time.status==="pending" ){ %>
+
+                                                        <span class="status pending">Изчакване</span>
+
+                                                        <form
+                                                            action="/booking/accept/<%= service._id %>/<%= time._id %>"
+                                                            method="POST">
+                                                            <button class="accept-btn">Приеми</button>
+                                                        </form>
+
+                                                        <form
+                                                            action="/booking/reject/<%= service._id %>/<%= time._id %>"
+                                                            method="POST">
+                                                            <button class="reject-btn">Откажи</button>
+                                                        </form>
+
+                                                        <% } %>
+
+                                                            <% if(time.status==="accepted" ){ %>
+                                                                <span class="status accepted">Приета</span>
+                                                                <% } %>
+
+                                                                    <% if(time.status==="rejected" ){ %>
+                                                                        <span class="status rejected">Отказана</span>
+                                                                        <% } %>
+
+                                                </div>
                                             </div>
 
                                             <% } %>

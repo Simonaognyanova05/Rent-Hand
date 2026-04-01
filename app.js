@@ -10,6 +10,7 @@ const register = require('./controllers/registerController');
 const message = require('./controllers/messageController');
 const book = require('./controllers/bookController');
 const profile = require('./controllers/profileController');
+const bookingActions = require('./controllers/bookingController');
 const isAuth = require('./middlewares/isAuth');
 
 
@@ -47,6 +48,8 @@ app.put('/catalog/edit/:id', isAuth, serviceController.service_edit_one);
 app.post('/messages/:id', isAuth, message.send_service_message);
 app.get('/book/:serviceId/:timeId', book.book_get);
 app.post('/book/:serviceId/:timeId', book.book_post);
+app.post('/booking/accept/:serviceId/:timeId', bookingActions.accept_booking);
+app.post('/booking/reject/:serviceId/:timeId', bookingActions.reject_booking);
 app.get('/profile', isAuth, profile.profile_get);
 app.get('/about', about);
 app.get('/contact', contact);
