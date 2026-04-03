@@ -50,6 +50,7 @@ app.get('/book/:serviceId/:timeId', book.book_get);
 app.post('/book/:serviceId/:timeId', book.book_post);
 app.post('/booking/accept/:serviceId/:timeId', bookingActions.accept_booking);
 app.post('/booking/reject/:serviceId/:timeId', bookingActions.reject_booking);
+app.post('/reply/:serviceId/:messageId', message.reply_message);
 app.get('/profile', isAuth, profile.profile_get);
 app.get('/about', about);
 app.get('/contact', contact);

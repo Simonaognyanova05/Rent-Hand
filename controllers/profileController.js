@@ -7,18 +7,18 @@ const profile_get = async (req, res) => {
     // Моите услуги
     const services = await Service.find({
         userId: user._id
-    });
+    }).lean();
 
     // Моите резервации
     const bookings = await Service.find({
         "availableTimes.userId": user._id
-    });
+    }).lean();
 
     res.render('profile', {
         title: 'Profile',
         services,
         bookings,
-        error: "Неуспешно зареждане на съобщения!"
+        user
     });
 };
 

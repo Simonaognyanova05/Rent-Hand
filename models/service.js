@@ -32,11 +32,17 @@ const serviceSchema = new Schema({
                 ref: 'User'
             },
             email: String,
-            message: String,
-            date: {
-                type: Date,
-                default: Date.now
-            }
+
+            conversation: [
+                {
+                    sender: String, // owner / user
+                    message: String,
+                    date: {
+                        type: Date,
+                        default: Date.now
+                    }
+                }
+            ]
         }
     ],
 
