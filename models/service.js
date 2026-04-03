@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const serviceSchema = new Schema({
+    category: String,
     title: String,
     description: String,
     price: Number,

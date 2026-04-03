@@ -18,45 +18,101 @@
                 <input type="text" placeholder="Търси услуга..." class="search">
 
                 <select class="filter">
-                    <option>Всички категории</option>
-                    <option>Ремонти</option>
-                    <option>Дизайн</option>
-                    <option>IT услуги</option>
-                    <option>Уроци</option>
+                    <option value="all">Всички категории</option>
+                    <option value="Ремонти">Ремонти</option>
+                    <option value="Дизайн">Дизайн</option>
+                    <option value="IT услуги">IT услуги</option>
+                    <option value="Уроци">Уроци</option>
                 </select>
 
             </div>
 
             <div class="services">
 
-                <% if (services.length> 0) {%>
-                    <%services.forEach(service=> { %>
-                        <div class="card">
+                <% if (services.length> 0) { %>
+
+                    <% services.forEach(service=> { %>
+
+                        <div class="card" data-category="<%= service.category || 'Други' %>">
 
                             <div class="card-header">
+
                                 <h3>
-                                    <%= service.title%>
+                                    <%= service.title %>
                                 </h3>
+
                                 <span class="price">
-                                    <%= service.price%>€
+                                    <%= service.price %>€
                                 </span>
+
                             </div>
 
                             <p class="description">
-                                <%= service.description%>
+                                <%= service.description %>
                             </p>
 
-                            <a href="/catalog/<%= service._id %>" class="btn small">Виж повече</a>
-
+                            <a href="/catalog/<%= service._id %>" class="btn small">
+                                Виж повече
+                            </a>
 
                         </div>
-                        <% })%>
-                            <%}%>
 
+                        <% }) %>
+
+                            <% } else { %>
+
+                                <div class="empty-state">
+                                    Няма налични услуги
+                                </div>
+
+                                <% } %>
+
+            </div>
 
         </section>
 
         <%- include('./partials/footer.ejs') %>
+
+
+            <script>
+
+                const searchInput = document.querySelector(".search");
+                const filterSelect = document.querySelector(".filter");
+                const cards = document.querySelectorAll(".card");
+
+                searchInput.addEventListener("input", filterServices);
+                filterSelect.addEventListener("change", filterServices);
+
+                function filterServices() {
+
+                    const searchValue = searchInput.value.toLowerCase();
+                    const filterValue = filterSelect.value;
+
+                    cards.forEach(card => {
+
+                        const title = card.querySelector("h3").textContent.toLowerCase();
+                        const description = card.querySelector(".description").textContent.toLowerCase();
+                        const category = card.dataset.category;
+
+                        const matchSearch =
+                            title.includes(searchValue) ||
+                            description.includes(searchValue);
+
+                        const matchFilter =
+                            filterValue === "all" ||
+                            category === filterValue;
+
+                        if (matchSearch && matchFilter) {
+                            card.style.display = "block";
+                        } else {
+                            card.style.display = "none";
+                        }
+
+                    });
+
+                }
+
+            </script>
 
 </body>
 
