@@ -4,7 +4,7 @@ const profile_get = async (req, res) => {
 
     const user = req.session.user;
 
-    // Моите услуги
+    // Моите услуги (аз съм собственик)
     const services = await Service.find({
         userId: user._id
     }).lean();
@@ -14,12 +14,19 @@ const profile_get = async (req, res) => {
         "availableTimes.userId": user._id
     }).lean();
 
+    // Моите съобщения (като клиент)
+    const myMessages = await Service.find({
+        "messages.userId": user._id
+    }).lean();
+
     res.render('profile', {
         title: 'Profile',
         services,
         bookings,
+        myMessages,
         user
     });
+
 };
 
 module.exports = {

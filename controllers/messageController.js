@@ -5,6 +5,10 @@ const send_service_message = async (req, res) => {
     const { id } = req.params;
     const { message } = req.body;
 
+    if (!message) {
+        return res.redirect(`/catalog/${id}`);
+    }
+
     const service = await Service.findById(id);
 
     service.messages.push({
@@ -30,9 +34,17 @@ const reply_message = async (req, res) => {
     const { serviceId, messageId } = req.params;
     const { reply } = req.body;
 
+    if (!reply) {
+        return res.redirect('/profile');
+    }
+
     const service = await Service.findById(serviceId);
 
     const message = service.messages.id(messageId);
+
+    if (!message) {
+        return res.redirect('/profile');
+    }
 
     message.conversation.push({
         sender: "owner",
