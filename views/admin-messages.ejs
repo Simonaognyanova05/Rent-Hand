@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <%- include('./partials/header.ejs') %>
+</head>
+
+<body>
+
+    <%- include('./partials/navbar.ejs') %>
+
+        <section class="page">
+
+            <h1 class="page-title">
+                Контакт съобщения
+            </h1>
+
+            <% if(messages.length===0){ %>
+
+                <div class="empty-state">
+                    Няма съобщения
+                </div>
+
+                <% } %>
+
+                    <% messages.forEach(msg=> { %>
+
+                        <div class="card">
+
+                            <h3>
+                                <%= msg.name %>
+                            </h3>
+
+                            <p>📧 <%= msg.email %>
+                            </p>
+
+                            <% if(msg.subject){ %>
+                                <p>📌 <%= msg.subject %>
+                                </p>
+                                <% } %>
+
+                                    <p class="description">
+                                        <%= msg.message %>
+                                    </p>
+
+                                    <small>
+                                        <%= new Date(msg.date).toLocaleString() %>
+                                    </small>
+
+                        </div>
+
+                        <% }) %>
+
+        </section>
+
+        <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>

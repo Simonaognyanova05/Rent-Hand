@@ -12,6 +12,7 @@ const book = require('./controllers/bookController');
 const profile = require('./controllers/profileController');
 const bookingActions = require('./controllers/bookingController');
 const isAuth = require('./middlewares/isAuth');
+const { admin_messages } = require('./controllers/adminController');
 
 
 const app = express();
@@ -55,6 +56,7 @@ app.get('/profile', isAuth, profile.profile_get);
 app.get('/about', about);
 app.get('/contact', contact.contact_get);
 app.post('/contact', contact.contact_post);
+app.get('/admin-messages', admin_messages);
 app.get('/login', login.login_get);
 app.get('/logout', login.logout);
 app.post('/login', login.login_post);

@@ -16,8 +16,13 @@
             <% } else { %>
                 <a href="/upload">Качи услуга</a>
                 <a href="/profile">Профил</a>
-                <a href="/logout">Изход</a>
-                <% } %>
+                <% if(user && user.role==="admin" ){ %>
+
+                    <a href="/admin-messages">Въпроси</a>
+
+                    <% } %>
+                        <a href="/logout">Изход</a>
+                        <% } %>
 
     </nav>
 

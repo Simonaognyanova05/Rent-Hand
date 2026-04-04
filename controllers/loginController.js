@@ -6,6 +6,7 @@ const login_get = (req, res) => {
 };
 
 const login_post = async (req, res) => {
+
     const { identifier, password } = req.body;
 
     try {
@@ -27,33 +28,53 @@ const login_post = async (req, res) => {
         const comparedPass = await bcrypt.compare(password, user.password);
 
         if (comparedPass) {
+
             req.session.user = user;
-            console.log("Logged user:", req.session.user);
+
+            if (user.role === "admin") {
+                return res.redirect('/');
+            }
+
             res.redirect('/');
+
         } else {
+
             return res.render('login', {
                 title: "Login page",
                 error: "Грешна парола!"
             });
+
         }
 
     } catch (e) {
+
         console.log(e);
+
         res.render('login', {
             title: "Login page",
             error: "Възникна грешка"
         });
+
     }
+
 };
 
 const logout = (req, res) => {
+
     req.session.destroy((err) => {
+
         if (err) {
             return console.log(err);
-        };
+        }
 
         res.redirect('/');
-    })
-}
 
-module.exports = { login_get, login_post, logout };
+    });
+
+};
+
+module.exports = {
+    login_get,
+    login_post,
+    logout
+};
