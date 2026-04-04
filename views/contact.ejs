@@ -15,6 +15,7 @@
 
             <div class="contact-container">
 
+                <!-- Contact Info -->
                 <div class="contact-info">
 
                     <h2>Контактна информация</h2>
@@ -49,6 +50,65 @@
                 </div>
 
 
+                <!-- Contact Form -->
+                <div class="contact-form">
+
+                    <h2>Изпрати съобщение</h2>
+
+                    <form action="/contact" method="POST">
+
+                        <input type="text" name="name" placeholder="Вашето име" required>
+
+                        <input type="email" name="email" placeholder="Вашият имейл" required>
+
+                        <select name="subject">
+
+                            <option value="">Избери тема</option>
+                            <option>Въпрос за услуга</option>
+                            <option>Технически проблем</option>
+                            <option>Партньорство</option>
+                            <option>Друго</option>
+
+                        </select>
+
+                        <textarea name="message" placeholder="Вашето съобщение..." rows="6" required></textarea>
+
+                        <button class="btn">
+                            Изпрати съобщение
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FAQ Section -->
+
+            <div class="faq-section">
+
+                <h2 class="section-title">Често задавани въпроси</h2>
+
+                <div class="faq">
+
+                    <div class="faq-item">
+                        <h3>Как работи платформата?</h3>
+                        <p>Потребителите могат да създават услуги и да резервират време директно през платформата.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Безплатно ли е използването?</h3>
+                        <p>Да, регистрацията и създаването на услуги е напълно безплатно.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Как да стана доставчик на услуги?</h3>
+                        <p>След регистрация можете да създадете услуга от вашия профил.</p>
+                    </div>
+
+                </div>
 
             </div>
 
