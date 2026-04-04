@@ -4,15 +4,29 @@ const service_index = (req, res) => {
     res.render('home', { title: 'Home page' });
 };
 
-const service_catalog = (req, res) => {
-    Service.find().sort({ createdAt: -1 })
-        .then(result => {
-            const services = result.map(x => x.toJSON());
-            res.render('catalog', { title: 'Catalog page', services: services });
-        })
-        .catch(err => {
-            console.log(err);
-        })
+const service_catalog = async (req, res) => {
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = 6;
+    const skip = (page - 1) * limit;
+
+    const total = await Service.countDocuments();
+
+    const services = await Service.find()
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .lean();
+
+    const totalPages = Math.ceil(total / limit);
+
+    res.render('catalog', {
+        title: 'Catalog page',
+        services,
+        currentPage: page,
+        totalPages
+    });
+
 };
 
 const service_create_get = (req, res) => {

@@ -927,6 +927,30 @@ footer {
     cursor: pointer;
 }
 
+.pagination {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    background: #1e293b;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.page-btn:hover {
+    background: #3b82f6;
+}
+
+.page-btn.active {
+    background: #3b82f6;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

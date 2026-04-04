@@ -69,6 +69,30 @@
 
             </div>
 
+            <div class="pagination">
+
+                <% if(currentPage> 1){ %>
+                    <a href="?page=<%= currentPage - 1 %>" class="page-btn">
+                        ← Предишна
+                    </a>
+                    <% } %>
+
+                        <% for(let i=1; i <=totalPages; i++){ %>
+
+                            <a href="?page=<%= i %>" class="page-btn <%= currentPage === i ? 'active' : '' %>">
+                                <%= i %>
+                            </a>
+
+                            <% } %>
+
+                                <% if(currentPage < totalPages){ %>
+                                    <a href="?page=<%= currentPage + 1 %>" class="page-btn">
+                                        Следваща →
+                                    </a>
+                                    <% } %>
+
+            </div>
+
         </section>
 
         <%- include('./partials/footer.ejs') %>
