@@ -109,11 +109,12 @@ const service_edit_one = (req, res) => {
         booked: false
     }));
 
-    const { title, description, price, location, img } = req.body;
+    const { category, title, description, price, location, img } = req.body;
 
     Service.findByIdAndUpdate(
         req.params.id,
         {
+            category,
             title,
             description,
             price,

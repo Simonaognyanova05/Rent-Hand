@@ -15,7 +15,13 @@
             <h1>Редактирай услуга</h1>
 
             <form action="/catalog/edit/<%= service._id %>?_method=PUT" method="POST">
-
+                <select name="category" required>
+                    <option value="Категория">Изберете категория</option>
+                    <option value="Ремонти">Ремонти</option>
+                    <option value="Дизайн">Дизайн</option>
+                    <option value="IT услуги">IT услуги</option>
+                    <option value="Уроци">Уроци</option>
+                </select>
                 <input type="text" name="title" value="<%= service.title %>" required>
 
                 <textarea name="description"><%= service.description %></textarea>
@@ -58,7 +64,7 @@
 
         </section>
         <%- include('./partials/footer.ejs') %>
-        <script src="/js/editService.js"></script>
+            <script src="/js/editService.js"></script>
 </body>
 
 </html>

@@ -25,27 +25,44 @@
 
                     <% messages.forEach(msg=> { %>
 
-                        <div class="card">
+                        <div class="message-card">
 
-                            <h3>
-                                <%= msg.name %>
-                            </h3>
+                            <div class="message-header">
 
-                            <p>📧 <%= msg.email %>
-                            </p>
+                                <div class="message-user">
+                                    <div class="avatar">
+                                        <%= msg.name.charAt(0).toUpperCase() %>
+                                    </div>
+
+                                    <div>
+                                        <div class="message-name">
+                                            <%= msg.name %>
+                                        </div>
+
+                                        <div class="message-email">
+                                            <%= msg.email %>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="message-date">
+                                    <%= new Date(msg.date).toLocaleString() %>
+                                </div>
+
+                            </div>
 
                             <% if(msg.subject){ %>
-                                <p>📌 <%= msg.subject %>
-                                </p>
+
+                                <div class="message-subject">
+                                    📌 <%= msg.subject %>
+                                </div>
+
                                 <% } %>
 
-                                    <p class="description">
+                                    <div class="message-text">
                                         <%= msg.message %>
-                                    </p>
-
-                                    <small>
-                                        <%= new Date(msg.date).toLocaleString() %>
-                                    </small>
+                                    </div>
 
                         </div>
 
