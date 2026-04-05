@@ -89,6 +89,25 @@ nav a:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
+.reply-btn {
+    background: linear-gradient(45deg, #38bdf8, #6366f1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.reply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+}
+
 /* SERVICES GRID */
 .services {
     margin-top: 80px;
