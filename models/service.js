@@ -36,7 +36,7 @@ const serviceSchema = new Schema({
 
             conversation: [
                 {
-                    sender: String, // owner / user
+                    sender: String, 
                     message: String,
                     date: {
                         type: Date,
